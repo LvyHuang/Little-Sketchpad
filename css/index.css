@@ -5,13 +5,28 @@ body{
     background: #cccccc;
     position: relative;
 }
-#eraser{
-    position: absolute;
+#actions{
+    position: fixed;
+    right: 80px;
+    top: 100px;
+}
+.actions #eraser,.actions #brush{
     width: 60px;
     height: 30px;
-    right: 100px;
-    top: 100px;
     background: #ccc;
     border:solid #333 1px;
     border-radius: 5px;
+    margin-right: 40px;
+}
+.actions #brush{
+    background: white;
+}
+.actions #eraser{
+    background: #ccc;
+}
+.actions.x #brush{
+    background: #ccc;
+}
+.actions.x #eraser{
+    background: white;
 }
