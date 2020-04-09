@@ -1,16 +1,12 @@
-
-
 var canvas = document.getElementById("canvas");
 var context = canvas.getContext('2d');
-var using = false;
-var lastPoint = {x:undefined, y:undefined};
 var eraser = document.getElementById("eraser");
 var eraserEnabled = false;
 var brush = document.getElementById("brush");
 var actions = document.getElementById("actions");
 
 autoCanvasSize(canvas);
-listenToMouse(canvas);
+listenToUser(canvas);
 
 brush.onclick = function () {
     if(eraserEnabled){
@@ -49,32 +45,55 @@ function autoCanvasSize(canvas) {
 }
 
 
-function listenToMouse(canvas){
-    //鼠标按下时
-    canvas.onmousedown = function (a) {
-        using = true;
-        var x = a.clientX;
-        var y = a.clientY;
-        lastPoint = {x:x, y:y};
-    };
-    //鼠标移动时
-    canvas.onmousemove = function (a) {
-        var x = a.clientX;
-        var y = a.clientY;
-        if(eraserEnabled){
-            if(using){
-                context.clearRect(x-5, y-5, 10, 10);
-            }
-        }else{
-            if(using){
+function listenToUser(canvas){
+    var using = false;
+    var lastPoint = {x:undefined, y:undefined};
+    if(document.body.ontouchstart !== undefined){
+        canvas.ontouchstart = function (a) {
+            using = true;
+            var x = a.touches[0].clientX;
+            var y = a.touches[0].clientY;
+            lastPoint = {x:x, y:y};
+        };
+        canvas.ontouchmove = function (a) {
+            var x = a.touches[0].clientX;
+            var y = a.touches[0].clientY;
+            if(!using) { return }
+            if(eraserEnabled){
+                context.clearRect(x-8, y-8, 16, 16);
+            }else{
                 var newPoint = {x:x, y:y};
                 drawLine(lastPoint.x, lastPoint.y, newPoint.x, newPoint.y);
                 lastPoint = newPoint;
             }
-        }
-    };
-    //鼠标松开时
-    canvas.onmouseup = function () {
-        using = false;
-    };
+        };
+        canvas.ontouchend = function (a) {
+            using = false;
+        };
+    }
+        //鼠标按下时
+        canvas.onmousedown = function (a) {
+            using = true;
+            var x = a.clientX;
+            var y = a.clientY;
+            lastPoint = {x:x, y:y};
+        };
+        //鼠标移动时
+        canvas.onmousemove = function (a) {
+            var x = a.clientX;
+            var y = a.clientY;
+            if(!using) {return}
+            if(eraserEnabled){
+                context.clearRect(x-8, y-8, 16, 16);
+            }else{
+                var newPoint = {x:x, y:y};
+                drawLine(lastPoint.x, lastPoint.y, newPoint.x, newPoint.y);
+                lastPoint = newPoint;
+            }
+        };
+        //鼠标松开时
+        canvas.onmouseup = function () {
+            using = false;
+        };
+
 }
