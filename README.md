@@ -1,1 +1,6 @@
-# Little-Sketchpad
+# Little-Sketchpad  
+
+这个 Canvas 小小画板能够适配 PC 端和移动端，功能有画图（可选择笔触颜色/粗细）、橡皮擦、一键清空、保存画图。
+
+在 PC 端中，保存画图直接点击“save”的 SVG 图标即可。
+在移动端中，点击“save”之后，会打开此画板转换成的图片 URL 新页面。
