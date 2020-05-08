@@ -2,12 +2,13 @@ body{
     margin: 0;
     overflow: hidden;
 }
-.icon {
+.actions #brush,.actions #eraser,.actions #save,.actions #clear {
     width: 1em; height: 1em;
     vertical-align: -0.15em;
     fill: currentColor;
     overflow: hidden;
 }
+
 .canvas{
     background: #eee;
 }
@@ -31,16 +32,16 @@ ul li{
 .colors li.active{
     transform: scale(1.15);
 }
-.colors .black{
+.colors #black{
     background: black;
 }
-.colors .red{
+.colors #red{
     background: red;
 }
-.colors .green{
+.colors #green{
     background: green;
 }
-.colors .blue{
+.colors #blue{
     background: blue;
 }
 .size{
@@ -59,13 +60,13 @@ ul li{
 .size li.active{
     transform: scale(1.1);
 }
-.size .thin{
+.size #thin{
     border-right: 4px solid black;
 }
-.size .middle{
+.size #middle{
     border-right: 6px solid black;
 }
-.size .thick{
+.size #thick{
     border-right: 10px solid black;
 }
 .actions{
