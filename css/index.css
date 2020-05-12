@@ -2,13 +2,12 @@ body{
     margin: 0;
     overflow: hidden;
 }
-.actions #brush,.actions #eraser,.actions #save,.actions #clear {
+svg{
     width: 1em; height: 1em;
     vertical-align: -0.15em;
     fill: currentColor;
     overflow: hidden;
 }
-
 .canvas{
     background: #eee;
 }
